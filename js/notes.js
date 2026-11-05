@@ -29,10 +29,12 @@ $('nuevo').onclick=()=>{if(!cats().length)return;cur={id:null,title:'',code:'',b
 function draw(){
   if(!cur){if(!pend)$('main').innerHTML='<div class="empty"><div><div style="font-size:48px">📒</div>Selecciona una nota o crea una nueva</div></div>';return}
   $('main').innerHTML=`<div class="ed">
-   <button class="back" id="bk">← Notas</button>
+   <div class="row"><span class="sp"></span><button id="cl" title="Cerrar esta nota">✕ Cerrar nota</button></div>
    <input id="t" placeholder="Título" value="${esc(cur.title)}">
-   <label>Apartado</label><select id="ct">${cats().map(k=>`<option value="${k}" ${cur.category===k?'selected':''}>${CATS[k]}</option>`).join('')}</select>
-   <label>Código</label><div class="row"><input id="c" class="code" style="flex:1" placeholder="Código del formato" value="${esc(cur.code)}"><button id="cp">Copiar</button></div>
+    <div class="grid2">
+    <div><label>Apartado</label><select id="ct">${cats().map(k=>`<option value="${k}" ${cur.category===k?'selected':''}>${CATS[k]}</option>`).join('')}</select></div>
+    <div><label>Código</label><div class="row"><input id="c" class="code" style="flex:1" placeholder="Código del formato" value="${esc(cur.code)}"><button id="cp">Copiar</button></div></div>
+   </div>
    <label>Información</label><textarea id="b" placeholder="Escribe aquí la información…">${esc(cur.body)}</textarea>
    <label>Archivos</label>
    <div class="drop" id="dz">📎 Arrastra archivos aquí o haz clic para adjuntar<br><small>Fotos, videos, documentos — cualquier tipo</small></div>
@@ -40,7 +42,7 @@ function draw(){
    <div class="row" style="margin-top:22px">${cur.id?'<button class="d" id="del">Eliminar nota</button>':''}<span class="sp"></span><button class="p" id="ok">Guardar</button></div>
    <div class="meta">${cur.id?`Creada por ${esc(cur.created_by||'—')} · ${when(cur.created_at)}<br>Última edición: ${esc(cur.updated_by||'—')} · ${when(cur.updated_at)}`:''}</div></div>`;
   ['t','c','b','ct'].forEach(i=>$(i).oninput=()=>dirty=true);
-  $('bk').onclick=()=>document.body.classList.remove('ver');
+  $('cl').onclick=()=>{if(dirty&&!confirm('Tienes cambios sin guardar. ¿Cerrar la nota sin guardar?'))return;cur=null;dirty=false;document.body.classList.remove('ver');draw();list()};
   $('cp').onclick=()=>{navigator.clipboard?.writeText($('c').value);$('cp').textContent='¡Copiado!';setTimeout(()=>$('cp').textContent='Copiar',1200)};
   $('ok').onclick=async()=>{if(await save()){$('ok').textContent='✓ Guardado';setTimeout(()=>$('ok')&&($('ok').textContent='Guardar'),1200)}};
   if($('del'))$('del').onclick=async()=>{if(!confirm('¿Eliminar esta nota y sus archivos para todos?'))return;
