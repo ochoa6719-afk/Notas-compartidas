@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notas Compartidas</title>
+<link rel="stylesheet" href="css/styles.css">
+</head><body>
+
+<div class="ov full" id="lg"><div class="md">
+ <div class="brand"><div class="logo">📒</div>Notas Compartidas</div>
+ <input id="em" type="email" placeholder="Correo" autocomplete="email">
+ <input id="pw" type="password" placeholder="Contraseña (mínimo 6 caracteres)" autocomplete="current-password">
+ <button class="p" id="in">Ingresar</button>
+ <button id="up">Registrarme como nuevo</button>
+ <div id="msg" class="meta" style="margin:0"></div>
+</div></div>
+
+<div class="app" id="app" style="display:none">
+ <aside>
+  <div class="top">
+   <div class="brand"><div class="logo">📒</div>Notas<span class="me" id="me"></span><button id="ad" title="Usuarios y permisos" style="display:none;padding:4px 8px">👥</button><button id="out" style="padding:4px 8px" title="Salir">⎋</button></div>
+   <div class="tabs" id="tabs"></div>
+   <input id="q" placeholder="Buscar…"><button class="p" id="nuevo">+ Nueva nota</button>
+  </div>
+  <div id="list"></div>
+ </aside>
+ <main id="main"></main>
+</div>
+
+<div class="ov" id="ov"><div class="md" style="width:min(560px,94vw)">
+ <div class="row"><h2 style="margin:0">Usuarios y permisos</h2><span class="sp"></span><button id="xc">Cerrar</button></div>
+ <p class="meta" style="margin:0">Marca lo que puede ver cada persona. 🆕 = pendiente de aprobación. Los administradores ven todo.</p>
+ <table><thead><tr><th>Correo</th><th>Personal</th><th>Trabajo</th></tr></thead><tbody id="ub"></tbody></table>
+</div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/supabase.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/notes.js"></script>
+<script src="js/files.js"></script>
+<script src="js/admin.js"></script>
+</body></html>

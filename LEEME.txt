@@ -1,0 +1,22 @@
+NOTAS COMPARTIDAS (Supabase + GitHub Pages)
+
+ESTRUCTURA
+  index.html            Estructura de la página
+  css/styles.css        Estilos
+  js/config.js          <- ÚNICO archivo a editar: tu URL y tu llave Publishable de Supabase
+  js/supabase.js        Conexión con Supabase
+  js/utils.js           Ayudas y estado compartido
+  js/auth.js            Registro / ingreso / salir
+  js/notes.js           Lista de notas, pestañas, búsqueda y editor
+  js/files.js           Archivos adjuntos
+  js/admin.js           Panel de permisos (solo administrador)
+  database/supabase.sql Tablas y reglas de seguridad (se pega en Supabase > SQL Editor)
+
+PASOS
+1) Supabase > SQL Editor > New query: pega database/supabase.sql > Run.
+2) Edita js/config.js con tu Project URL y tu llave Publishable (nunca la Secret).
+3) Sube TODA la carpeta (index.html, css, js) a un repositorio de GitHub y activa Pages.
+4) Supabase > Authentication > URL Configuration: Site URL = la dirección de GitHub Pages.
+5) Regístrate en la página y, en SQL Editor, ejecuta:
+   update public.profiles set is_admin = true where email = 'TU_CORREO@ejemplo.com';
+6) Sale y vuelve a entrar: verás el botón de usuarios para dar permisos Personal/Trabajo.
