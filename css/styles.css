@@ -24,7 +24,7 @@ button.d{color:var(--dg)}
 .it small{color:var(--mu)}
 .chip{font-size:11px;padding:1px 8px;border-radius:99px;background:var(--code);color:var(--ac);margin-right:4px}
 main{overflow:auto;padding:28px;min-height:0}
-.ed{max-width:820px;margin:0 auto}
+.ed{max-width:1000px;margin:0 auto}
 .ed label{display:block;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--mu);margin:20px 0 6px}
 #t{font-size:26px;font-weight:700;border:0;background:transparent;padding:4px 0;border-radius:0;border-bottom:1px solid var(--bd)}
 .code{font-family:ui-monospace,Menlo,Consolas,monospace;background:var(--code)}
@@ -43,5 +43,5 @@ main{overflow:auto;padding:28px;min-height:0}
 .ov.full{background:var(--bg);display:grid}
 .md{background:var(--sb);padding:24px;border-radius:18px;width:min(440px,92vw);display:flex;flex-direction:column;gap:10px}
 table{width:100%;border-collapse:collapse}td,th{padding:8px 4px;border-bottom:1px solid var(--bd);text-align:left;font-size:14px}th{color:var(--mu);font-size:12px}
-.back{display:none}
-@media(max-width:800px){#t{font-size:19px}.app{grid-template-columns:1fr}main{display:none;padding:16px}body.ver aside{display:none}body.ver main{display:block}.back{display:inline-block}}
+.grid2{display:grid;grid-template-columns:200px 1fr;gap:14px}
+@media(max-width:800px){#t{font-size:19px}.app{grid-template-columns:1fr}main{display:none;padding:16px}body.ver aside{display:none}body.ver main{display:block}.grid2{grid-template-columns:1fr;gap:0}textarea{min-height:45vh}}
