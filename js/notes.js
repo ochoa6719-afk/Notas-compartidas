@@ -41,7 +41,7 @@ function draw(){
    </div>
    <div class="row" style="align-items:flex-end"><label style="flex:1">Información</label><button id="cb" style="padding:4px 10px;font-size:12px;margin-bottom:6px">Copiar</button></div><textarea id="b" placeholder="Escribe aquí la información…" ${dis}>${esc(cur.body)}</textarea>
    <label>Archivos</label>
-   ${tr?'':'<div class="drop" id="dz">📎 Arrastra archivos aquí o haz clic para adjuntar<br><small>Fotos, videos, documentos — cualquier tipo</small></div><input type="file" id="fi" multiple hidden>'}
+   ${tr?'':'<div class="drop" id="dz">📎 Arrastra archivos aquí o haz clic para adjuntar<br><small>Fotos, videos, documentos — o pega una captura con Ctrl+V</small></div><input type="file" id="fi" multiple hidden>'}
    <div id="st" class="meta"></div><div class="files" id="fl"></div>
    <div class="row" style="margin-top:22px">
     ${tr?'<button class="p" id="rs">↩ Restaurar nota</button>'+(me.is_admin?'<button class="d" id="pd">Eliminar definitivamente</button>':''):(cur.id?'<button class="d" id="del">Enviar a la papelera</button>':'')}
