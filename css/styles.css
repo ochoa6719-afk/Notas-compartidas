@@ -11,12 +11,12 @@ aside{background:var(--sb);border-right:1px solid var(--bd);display:flex;flex-di
 input,textarea,select{width:100%;padding:10px 12px;border:1px solid var(--bd);border-radius:10px;background:var(--card);color:var(--tx);font:inherit}
 input[type=checkbox]{width:auto}
 input:focus,textarea:focus,select:focus{outline:2px solid var(--ac);outline-offset:-1px}
-textarea{resize:vertical;min-height:180px}
+textarea{resize:vertical;min-height:55vh;line-height:1.65}
 button{font:inherit;cursor:pointer;border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:8px 14px;border-radius:10px}
 button:hover{border-color:var(--ac)}
 button.p{background:var(--ac);border-color:var(--ac);color:#fff;font-weight:600}
 button.d{color:var(--dg)}
-.tabs{display:flex;gap:6px}.tb{padding:5px 12px;border-radius:99px;font-size:13px}.tb.on{background:var(--ac2);border-color:var(--ac);color:var(--ac)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}.tb{padding:5px 12px;border-radius:99px;font-size:13px}.tb.on{background:var(--ac2);border-color:var(--ac);color:var(--ac)}
 #list{overflow:auto;padding:0 10px 10px;flex:1}
 .it{padding:11px 12px;border-radius:12px;cursor:pointer;margin-bottom:4px}
 .it:hover{background:var(--code)}.it.on{background:var(--ac2)}
@@ -45,3 +45,8 @@ main{overflow:auto;padding:28px;min-height:0}
 table{width:100%;border-collapse:collapse}td,th{padding:8px 4px;border-bottom:1px solid var(--bd);text-align:left;font-size:14px}th{color:var(--mu);font-size:12px}
 .grid2{display:grid;grid-template-columns:200px 1fr;gap:14px}
 @media(max-width:800px){#t{font-size:19px}.app{grid-template-columns:1fr}main{display:none;padding:16px}body.ver aside{display:none}body.ver main{display:block}.grid2{grid-template-columns:1fr;gap:0}textarea{min-height:45vh}}
+.banner{background:var(--ac2);border:1px solid var(--ac);padding:10px 14px;border-radius:10px;margin-top:12px}
+input:disabled,textarea:disabled,select:disabled{opacity:.7}
+.th img{cursor:zoom-in}
+#lb{background:rgba(0,0,0,.9);z-index:20;cursor:zoom-out}
+#lb img{max-width:94vw;max-height:92vh;border-radius:8px}
