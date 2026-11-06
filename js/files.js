@@ -33,3 +33,13 @@ async function files(){
 const closeLb=()=>{$('lb').style.display='none';$('lbi').removeAttribute('src')};
 $('lb').onclick=closeLb;
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeLb();$('ov').style.display='none'}});
+
+// Pegar una captura con Ctrl+V: se adjunta sola a la nota abierta
+document.addEventListener('paste',e=>{
+  if(!me||!cur||cur.deleted_at||!$('dz'))return;
+  const imgs=[...(e.clipboardData?.files||[])].filter(f=>f.type.startsWith('image/'));
+  if(!imgs.length)return;           // si es texto, se pega normal
+  e.preventDefault();
+  const d=new Date(),p=n=>String(n).padStart(2,'0'),t=`${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}${p(d.getSeconds())}`;
+  up(imgs.map((f,i)=>new File([f],`captura-${t}${imgs.length>1?'-'+(i+1):''}.${(f.type.split('/')[1]||'png').replace('jpeg','jpg')}`,{type:f.type})));
+});
