@@ -26,13 +26,21 @@
  <main id="main"></main>
 </div>
 
-<div class="ov" id="ov"><div class="md" style="width:min(560px,94vw)">
- <div class="row"><h2 style="margin:0">Usuarios y permisos</h2><span class="sp"></span><button id="xc">Cerrar</button></div>
- <p class="meta" style="margin:0">Marca lo que puede ver cada persona. 🆕 = pendiente de aprobación. Los administradores ven todo.</p>
- <table><thead><tr><th>Correo</th><th>Personal</th><th>Trabajo</th></tr></thead><tbody id="ub"></tbody></table>
+<div class="ov" id="ov"><div class="md" style="width:min(760px,95vw);max-height:90vh;overflow:auto">
+ <div class="row"><h2 style="margin:0">Panel de administrador</h2><span class="sp"></span><button id="xc">Cerrar</button></div>
+ <div class="tabs" id="atabs"><button class="tb on" data-p="pu">👥 Usuarios</button><button class="tb" data-p="pa">📜 Actividad</button><button class="tb" data-p="pb">💾 Respaldo</button></div>
+ <div id="pu"><p class="meta" style="margin:0 0 6px">Marca lo que puede ver cada persona. 🆕 = pendiente de aprobación. Los administradores ven todo.</p>
+  <table><thead><tr><th>Correo</th><th>Personal</th><th>Trabajo</th></tr></thead><tbody id="ub"></tbody></table></div>
+ <div id="pa" style="display:none"><p class="meta" style="margin:0 0 6px">Últimos 200 movimientos: quién creó, editó, archivó, restauró o eliminó.</p>
+  <table><thead><tr><th>Fecha</th><th>Usuario</th><th>Qué hizo</th></tr></thead><tbody id="ab"></tbody></table></div>
+ <div id="pb" style="display:none"><p class="meta" style="margin:0 0 10px">Descarga una copia de todas las notas (incluida la papelera) y de la actividad. Los archivos adjuntos solo se listan por nombre.</p>
+  <div class="row"><button class="p" id="bx">⬇ Descargar Excel</button><button id="bj">⬇ Descargar JSON</button></div><div id="bm" class="meta"></div></div>
 </div></div>
 
+<div class="ov" id="lb"><img id="lbi" alt=""></div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4/dist/umd/supabase.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="js/config.js"></script>
 <script src="js/supabase.js"></script>
 <script src="js/utils.js"></script>
