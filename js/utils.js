@@ -7,3 +7,10 @@ const CATS={personal:'Personal',trabajo:'Trabajo'};
 let me=null,notes=[],cur=null,dirty=false,filter='all',timer=null,pend=false;
 const cats=()=>me?Object.keys(CATS).filter(k=>me.is_admin||me['can_'+k]):[];
 const now=()=>new Date().toISOString();
+
+// Tema claro/oscuro (se recuerda en este navegador)
+const aplicaTema=t=>{if(t)document.documentElement.dataset.theme=t;else delete document.documentElement.dataset.theme};
+try{aplicaTema(localStorage.getItem('tema'))}catch(e){}
+$('th').onclick=()=>{
+  const ef=document.documentElement.dataset.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'),n=ef==='dark'?'light':'dark';
+  aplicaTema(n);try{localStorage.setItem('tema',n)}catch(e){}};
