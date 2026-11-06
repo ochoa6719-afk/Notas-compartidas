@@ -21,9 +21,15 @@ async function files(){
   const {data}=await sb.storage.from('archivos').createSignedUrls(fs.map(f=>id+'/'+f.name),3600);
   if(!$('fl')||!cur||cur.id!==id)return;
   el.innerHTML=fs.map((f,i)=>{const ext=(f.name.split('.').pop()||'').toLowerCase(),u=data?.[i]?.signedUrl||'#';
-   const th=/^(png|jpe?g|gif|webp|svg|bmp)$/.test(ext)?`<img src="${u}" loading="lazy">`:/^(mp4|webm|mov|m4v)$/.test(ext)?`<video src="${u}#t=0.1" preload="metadata" muted></video>`:esc(ext.slice(0,4).toUpperCase()||'DOC');
-   return `<div class="f"><div class="th">${th}</div><div class="fi"><div title="${esc(f.name)}">${esc(f.name)}</div><small>${sz(f.size)} · ${esc((f.by||'').split('@')[0])}</small></div><div class="fb"><a href="${u}" target="_blank">Ver</a><a href="${u}&download=${encodeURIComponent(f.name)}">Descargar</a><button class="d" data-rm="${i}">✕</button></div></div>`}).join('');
+   const th=/^(png|jpe?g|gif|webp|svg|bmp)$/.test(ext)?`<img src="${u}" loading="lazy" data-big="${u}" title="Ver en grande">`:/^(mp4|webm|mov|m4v)$/.test(ext)?`<video src="${u}#t=0.1" preload="metadata" muted></video>`:esc(ext.slice(0,4).toUpperCase()||'DOC');
+   return `<div class="f"><div class="th">${th}</div><div class="fi"><div title="${esc(f.name)}">${esc(f.name)}</div><small>${sz(f.size)} · ${esc((f.by||'').split('@')[0])}</small></div><div class="fb"><a href="${u}" target="_blank">Ver</a><a href="${u}&download=${encodeURIComponent(f.name)}">Descargar</a>${cur.deleted_at?'':`<button class="d" data-rm="${i}">✕</button>`}</div></div>`}).join('');
+  el.querySelectorAll('img[data-big]').forEach(i=>i.onclick=()=>{$('lbi').src=i.dataset.big;$('lb').style.display='grid'});
   el.querySelectorAll('[data-rm]').forEach(b=>b.onclick=async()=>{const f=cur.files[+b.dataset.rm];if(!confirm('¿Quitar "'+f.name+'"?'))return;
     await sb.storage.from('archivos').remove([cur.id+'/'+f.name]);cur.files=cur.files.filter(x=>x!==f);await touch();files();load()});
 }
 
+
+// Ver imágenes en grande: clic o Esc para cerrar
+const closeLb=()=>{$('lb').style.display='none';$('lbi').removeAttribute('src')};
+$('lb').onclick=closeLb;
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeLb();$('ov').style.display='none'}});
